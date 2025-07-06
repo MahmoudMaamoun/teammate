@@ -1,0 +1,43 @@
+default_platform(:ios) # or :android
+platform :ios do
+ # ------------------------
+ # Example: Build and Upload to TestFlight
+ # ------------------------
+ lane :beta do
+  # Step 1: Build the app
+  build_app(
+   scheme: "teammate.xcodeproj",   # Replace with your Xcode scheme
+   export_method: "app-store",  # For TestFlight
+   clean: true
+  )
+  # Step 2: Upload to TestFlight
+  upload_to_testflight(
+   skip_waiting_for_build_processing: true # Don’t wait for App Store processing
+  )
+  # Optional: Notify Slack/Teams
+  slack(
+   message: ":calling: New beta build uploaded to TestFlight!"
+  )
+ end
+ # ------------------------
+ # Example: Release to App Store
+ # ------------------------
+ lane :release do
+  # Step 1: Build for App Store
+  build_app(
+   scheme: "teammate",
+   export_method: "app-store",
+   clean: true
+  )
+  # Step 2: Upload to App Store Connect
+  upload_to_app_store(
+   submit_for_review: false, # Set to true to auto-submit for review
+   force: true
+  )
+  # Optional: Post a notification
+  notification(
+   title: "Release Submitted",
+   subtitle: "Check App Store Connect"
+  )
+ end
+end
