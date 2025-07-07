@@ -1,43 +1,42 @@
-default_platform(:ios) # or :android
+default_platform(:ios)
+
 platform :ios do
- # ------------------------
- # Example: Build and Upload to TestFlight
- # ------------------------
- lane :beta do
-  # Step 1: Build the app
-  build_app(
-   scheme: "teammate.xcodeproj",   # Replace with your Xcode scheme
-   export_method: "app-store",  # For TestFlight
-   clean: true
+  lane :beta do
+    # Step 1: Verify App Store Connect API credentials
+    api_key = app_store_connect_api_key(
+    key_id: ENV["APP_STORE_CONNECT_KEY_ID"],
+    issuer_id: ENV["APP_STORE_CONNECT_ISSUER_ID"],
+    key_filepath: ENV["APP_STORE_CONNECT_KEY_PATH"],
+    duration: 1200,
+    in_house: false,
+    is_key_content_base64: false
   )
-  # Step 2: Upload to TestFlight
-  upload_to_testflight(
-   skip_waiting_for_build_processing: true # Don’t wait for App Store processing
-  )
-  # Optional: Notify Slack/Teams
-  slack(
-   message: ":calling: New beta build uploaded to TestFlight!"
-  )
- end
- # ------------------------
- # Example: Release to App Store
- # ------------------------
- lane :release do
-  # Step 1: Build for App Store
-  build_app(
-   scheme: "teammate",
-   export_method: "app-store",
-   clean: true
-  )
-  # Step 2: Upload to App Store Connect
-  upload_to_app_store(
-   submit_for_review: false, # Set to true to auto-submit for review
-   force: true
-  )
-  # Optional: Post a notification
-  notification(
-   title: "Release Submitted",
-   subtitle: "Check App Store Connect"
-  )
- end
+  
+
+    # Step 2: Build with explicit provisioning
+    build_app(
+      scheme: "teammate",
+      export_method: "app-store",
+      export_options: {
+        provisioningProfiles: {
+          "com.mmaamoun.teammate" => "match AppStore com.mmaamoun.teammate"
+        },
+        signingStyle: "manual"
+      },
+      clean: true
+    )
+
+    # Step 3: Upload to TestFlight
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true,
+      verbose: true
+    )
+
+    # Step 4: Notification
+    slack(
+      message: "✅ New beta build uploaded to TestFlight!",
+      success: true
+    )
+  end
 end

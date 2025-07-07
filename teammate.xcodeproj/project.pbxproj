@@ -10,7 +10,7 @@
 		E9B586132E1AB84100B66833 /* Gemfile in Resources */ = {isa = PBXBuildFile; fileRef = E9B586102E1AB84100B66833 /* Gemfile */; };
 		E9B586142E1AB84100B66833 /* Gemfile.lock in Resources */ = {isa = PBXBuildFile; fileRef = E9B586112E1AB84100B66833 /* Gemfile.lock */; };
 		E9B586172E1AB86400B66833 /* Fastfile in Resources */ = {isa = PBXBuildFile; fileRef = E9B586162E1AB85800B66833 /* Fastfile */; };
-		E9B586192E1AE58B00B66833 /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = E9B586182E1AE58200B66833 /* Appfile */; };
+		E9B5861B2E1BE41000B66833 /* Appfile in Resources */ = {isa = PBXBuildFile; fileRef = E9B5861A2E1BE40700B66833 /* Appfile */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,7 +18,7 @@
 		E9B586102E1AB84100B66833 /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile; sourceTree = "<group>"; };
 		E9B586112E1AB84100B66833 /* Gemfile.lock */ = {isa = PBXFileReference; lastKnownFileType = text; path = Gemfile.lock; sourceTree = "<group>"; };
 		E9B586162E1AB85800B66833 /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
-		E9B586182E1AE58200B66833 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		E9B5861A2E1BE40700B66833 /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -60,7 +60,7 @@
 		E9B586122E1AB84100B66833 /* fastlane */ = {
 			isa = PBXGroup;
 			children = (
-				E9B586182E1AE58200B66833 /* Appfile */,
+				E9B5861A2E1BE40700B66833 /* Appfile */,
 				E9B586162E1AB85800B66833 /* Fastfile */,
 				E9B586102E1AB84100B66833 /* Gemfile */,
 				E9B586112E1AB84100B66833 /* Gemfile.lock */,
@@ -132,7 +132,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9B586192E1AE58B00B66833 /* Appfile in Resources */,
+				E9B5861B2E1BE41000B66833 /* Appfile in Resources */,
 				E9B586172E1AB86400B66833 /* Fastfile in Resources */,
 				E9B586132E1AB84100B66833 /* Gemfile in Resources */,
 				E9B586142E1AB84100B66833 /* Gemfile.lock in Resources */,

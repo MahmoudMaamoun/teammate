@@ -1,0 +1,4 @@
+.env
+fastlane/AuthKey_*.p8
+fastlane/Matchfile
+.env
